@@ -2,19 +2,20 @@
 #define HIJAEDITARC_H
 #include "wxfb_project.h"
 #include "Financiero.h"
+//#include "Cliente.h"
 
-class HijaEditarC : public VentanaEditarCliente {
+class HijaEditarC : public VentanaCliente{
 	
 private:
-	Cliente *m_financiero;
-	int m_indice_persona; ///< guarda el indice de la persona por si hay que modificarla
+	Financiero *m_financiero;
+	int QueCliente; ///almacena el índice del cliente
 protected:
 	void ClickCancelarCliente( wxCommandEvent& event )  override;
-	void ClickEditarCliente( wxCommandEvent& event )  override;
+	void ClickAceptarCliente( wxCommandEvent& event )  override;
 	
 public:
-	HijaEditarC(wxWindow *parent, Financiero *financiero, int cual);
-
+	HijaEditarC(wxWindow *parent, Financiero *financiero, int quien);
+	//	~HijaEditarC();
 };
 
 #endif

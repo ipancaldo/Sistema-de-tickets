@@ -30,8 +30,8 @@ public:
 	void EliminarCliente(int); ///SÓLO PARA MI	
 	void GuardarClientes(); ///Guarda todas las modificaciones efectuadas (agregar/eliminar/modificar)
 	int CantidadClientes() const; ///Informa la cantidad de clientes disponibles
-	std::vector<int> MostrarClientesHabilitados(bool); ///Muestra posición de clientes habilitados para true
-	
+	std::vector<int> MostrarClientesHabilitados(); ///Muestra posición de clientes habilitados para true
+
 	
 	Producto &SeleccionarProducto(int i);
 	void CargarProductos(std::string);
@@ -70,7 +70,7 @@ public:
 	int BuscarCodProd(std::string); ///------------!!! CON ESTO MOSTRAMOS LOS DATOS DEL PRODUCTO
 	int BuscarIdTicket(std::string);
 	
-	void Ordenar(CriterioOrden);
+	void Ordenar(CriterioOrden);///Orden para clientes / productos / tickes
 	
 private:
 	std::vector<Cliente> m_clientes;

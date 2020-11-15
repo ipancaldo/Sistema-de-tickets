@@ -197,21 +197,20 @@ int Financiero::CantidadTickets() const{
 	return m_tickets.size();
 }
 
-std::vector<int> Financiero::MostrarClientesHabilitados(bool m){
+std::vector<int> Financiero::MostrarClientesHabilitados(){
 	std::vector<int> v;
-	if(m == true){
-		for(int i=0;i<CantidadClientes();i++) { 
-			if(m_clientes[i].VerEstado() == true){
-				v.push_back(i);
-			}
-		}
-	}else{
-		for(int i=0;i<CantidadClientes();i++) { 
-			if(m_clientes[i].VerEstado() == false){
-				v.push_back(i);
-			}
+	for(int i=0;i<CantidadClientes();i++) { 
+		if(/*m_clientes[i]*/SeleccionarCliente(i).VerEstado() == true){
+			v.push_back(i);
 		}
 	}
+//	}else{
+//		for(int i=0;i<CantidadClientes();i++) { 
+//			if(m_clientes[i].VerEstado() == false){
+//				v.push_back(i);
+//			}
+//		}
+//	}
 	return v;
 }
 
@@ -478,8 +477,8 @@ std::string Financiero::ticket_GenerarId(){
 	
 
 void Financiero::ImprimirTicket(std::string codigo){
-	///Primero, debemos ordenar los tickets para poder buscar por código
-	Ordenar(por_id);
+	///Primero, debemos  los tickets para poder buscar por código
+	(por_id);
 	///Segundo, buscar todos los ID's iguales, guardando el DNI Cliente y código/s del/os producto/s
 	std::string buscar_comprador;
 	vector<Compras> productos_comprados;
@@ -623,11 +622,7 @@ struct Cl_Pr_Tk Financiero::MostrarTicket(std::string id){
 
 
 
-
-
-
-
-
+///Orden para clientes / productos / tickes
 void Financiero::Ordenar(CriterioOrden Criterio){
 	switch(Criterio){
 	///Orden para clientes

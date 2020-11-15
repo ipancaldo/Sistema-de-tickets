@@ -59,20 +59,26 @@ bool Cliente::VerEstado() const{
 	return m_activo;
 }
 
-
+///Porrr las dudas, agregue a todos estos la línea: nom = CorregirPalabra(nom);
+///Si hay algún problema, eliminar la primera línea en todos estos edits
 void Cliente::EditarNombre(std::string nom){
+	nom = CorregirPalabra(nom);
 	m_nom = nom;
 }
 void Cliente::EditarApellido(std::string ape){
+	ape = CorregirPalabra(ape);
 	m_ape = ape;
 }
 void Cliente::EditarAlias(std::string ali){
+	ali = CorregirPalabra(ali);
 	m_ali = ali;
 }
 void Cliente::EditarMail(std::string mail){
+	mail = CorregirPalabra(mail);
 	m_mail = mail;
 }
 void Cliente::EditarDireccion(std::string dir){
+	dir = CorregirPalabra(dir);
 	m_dir = dir;
 }
 void Cliente::EditarTelefono(std::string tel){
