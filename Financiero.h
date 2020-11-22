@@ -30,17 +30,18 @@ public:
 	void EliminarCliente(int); ///SÓLO PARA MI	
 	void GuardarClientes(); ///Guarda todas las modificaciones efectuadas (agregar/eliminar/modificar)
 	int CantidadClientes() const; ///Informa la cantidad de clientes disponibles
-	std::vector<int> MostrarClientesHabilitados(bool); ///Muestra posición de clientes habilitados para true
-	
+	std::vector<int> MostrarClientesHabilitados(); ///Muestra posición de clientes habilitados para true
+
 	
 	Producto &SeleccionarProducto(int i);
+//	void GenerarProducto(std::string, std::string, std::string, std::string, float); ///Genera un product COMPLETO, luego se agrega al listado con AgregarProducto
 	void CargarProductos(std::string);
 	void AgregarProducto(Producto); ///Agrega un producto
 	void EliminarProducto(int); ///Elimina un producto
 	void GuardarProductos(); ///Guarda todas las modificaciones efectuadas (agregar/eliminar/modificar)
 	int CantidadProductos() const;
 	std::vector<std::string> ListarCodProd(); ///Lista códigos en USO, no todos los existentes
-	std::string prod_GenerarCodBarras();
+	std::string prod_GenerarCodBarras(); ///No se usa, ahora se genera por código de barras real
 	
 	
 	Ticket &SeleccionarTicket(int i);
@@ -68,9 +69,11 @@ public:
 	int BuscarTelefono(std::string); ///Busqueda por número telefónico
 	int BuscarDni(std::string); ///------------!!! CON ESTO MOSTRAMOS LOS DATOS DEL COMPRADOR
 	int BuscarCodProd(std::string); ///------------!!! CON ESTO MOSTRAMOS LOS DATOS DEL PRODUCTO
+	int BuscarNombreProd(std::string);
+	int BuscarMarcaProd(std::string);
 	int BuscarIdTicket(std::string);
 	
-	void Ordenar(CriterioOrden);
+	void Ordenar(CriterioOrden);///Orden para clientes / productos / tickes
 	
 private:
 	std::vector<Cliente> m_clientes;

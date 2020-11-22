@@ -8,14 +8,18 @@ using namespace std;
 
 ///Esto lo da en 1:41:40
 HijaAgregarC::HijaAgregarC(wxWindow *parent, Financiero *financiero) 
-	: VentanaAgregarCliente(parent), m_financiero(financiero) {
+	: VentanaCliente(parent), m_financiero(financiero) {
 	///Modifico el nombre de los botones asi puede utilizarse en otra apertura como editar
 	m_c_agregar->SetLabel("Agregar");
 	m_c_cancelar->SetLabel("Cancelar");
+	///Modifico lo que dice el titulo de la ventana (para este caso, agregar)
+	m_c_tituloventana->SetLabel("Agregar cliente:");
+	///Titulo de la barra de la ventana
+	SetTitle("Agregar cliente");
 }
 
 
-void HijaAgregarC::ClickAgregarCliente( wxCommandEvent& event )  {
+void HijaAgregarC::ClickAceptarCliente( wxCommandEvent& event )  {
 	string nom = wx_to_std(m_c_nombre->GetValue());
 	string ape = wx_to_std(m_c_apellido->GetValue().c_str());
 	string dni = wx_to_std(m_c_dni->GetValue());
@@ -37,7 +41,7 @@ void HijaAgregarC::ClickAgregarCliente( wxCommandEvent& event )  {
 	}
 }
 
-void HijaAgregarC::ClickCancelarAgrCliente( wxCommandEvent& event )  {
+void HijaAgregarC::ClickCancelarCliente( wxCommandEvent& event )  {
 	EndModal(0);
 }
 

@@ -21,6 +21,7 @@ struct Prod2{
 	char id_prod[30];
 	float valor_prod;
 	char descr_prod[100];
+	bool est_prod;
 };
 
 struct Tickt2{
@@ -169,17 +170,25 @@ void Financiero::AgregarCliente(Cliente NuevoCliente){
 }
 //Elimina un cliente seleccionado. SÓLO PARA CASOS ESPECIALES
 void Financiero::EliminarCliente(int i){
-	m_clientes.erase(m_clientes.begin()+i); //Ponemos -1 porque pedimos en el programa valores entre 1 y v.size()
+	m_clientes.erase(m_clientes.begin()+i); //Ponemos +1 porque pedimos en el programa valores entre 1 y v.size()
 	GuardarClientes();
 }
+
+//void GenerarProducto(std::string NuevoNombre, string Marca, string Descr, string Cod, float ValorVenta){
+//	Producto NuevoProducto(NuevoNombre, Marca, Cod, ValorVenta, Descr);
+//	Financiero::AgregarProducto(NuevoProducto);
+//}
+
+
 //Agrega un producto nuevo a los existentes
 void Financiero::AgregarProducto(Producto NuevoProducto){
 	m_productos.push_back(NuevoProducto);
 	GuardarProductos();
 }
+
 //Elimina un producto seleccionado
 void Financiero::EliminarProducto(int i){
-	m_productos.erase(m_productos.begin()+i-1, m_productos.begin()+i); //Ponemos -1 porque pedimos en el programa valores entre 1 y v.size()
+	m_productos.erase(m_productos.begin()+i);
 	GuardarProductos();
 }
 //Agrega un ticket nuevo a los existentes
@@ -197,21 +206,20 @@ int Financiero::CantidadTickets() const{
 	return m_tickets.size();
 }
 
-std::vector<int> Financiero::MostrarClientesHabilitados(bool m){
+std::vector<int> Financiero::MostrarClientesHabilitados(){
 	std::vector<int> v;
-	if(m == true){
-		for(int i=0;i<CantidadClientes();i++) { 
-			if(m_clientes[i].VerEstado() == true){
-				v.push_back(i);
-			}
-		}
-	}else{
-		for(int i=0;i<CantidadClientes();i++) { 
-			if(m_clientes[i].VerEstado() == false){
-				v.push_back(i);
-			}
+	for(int i=0;i<CantidadClientes();i++) { 
+		if(/*m_clientes[i]*/SeleccionarCliente(i).VerEstado() == true){
+			v.push_back(i);
 		}
 	}
+//	}else{
+//		for(int i=0;i<CantidadClientes();i++) { 
+//			if(m_clientes[i].VerEstado() == false){
+//				v.push_back(i);
+//			}
+//		}
+//	}
 	return v;
 }
 
@@ -256,6 +264,7 @@ void Financiero::GuardarProductos(){
 		strcpy(aux.id_prod, m_productos[i].prod_VerCodigo().c_str());
 		aux.valor_prod = m_productos[i].prod_VerValor();
 		strcpy(aux.descr_prod, m_productos[i].prod_VerDescr().c_str());
+		aux.est_prod = m_productos[i].prod_VerEstado();
 		
 		escribir.write(reinterpret_cast<char*>(&aux),sizeof(aux));
 	}
@@ -361,7 +370,7 @@ int Financiero::BuscarDireccion(std::string Direccion){
 }
 
 int Financiero::BuscarCodProd(std::string codigo){
-	int pos;
+	int pos = -1;
 	for(size_t i=0;i<m_productos.size();i++) { 
 		if(codigo == m_productos[i].prod_VerCodigo()){
 			pos = i;
@@ -369,6 +378,32 @@ int Financiero::BuscarCodProd(std::string codigo){
 		}
 	}
 	return pos;
+}
+
+int Financiero::BuscarNombreProd(std::string Nombre) {
+	pasar_a_minusculas(Nombre);
+	int cantidad = m_productos.size();
+	for (int i=0;i<cantidad;i++) {
+		Producto &p = m_productos[i];
+		std::string nombre_actual = p.prod_VerNombre();
+		pasar_a_minusculas(nombre_actual);
+		if (nombre_actual.find(Nombre,0)!=std::string::npos)
+			return i;
+	}
+	return no_encontrado;
+}
+
+int Financiero::BuscarMarcaProd(std::string marca) {
+	pasar_a_minusculas(marca);
+	int cantidad = m_productos.size();
+	for (int i=0;i<cantidad;i++) {
+		Producto &p = m_productos[i];
+		std::string marca_actual = p.prod_VerMarca();
+		pasar_a_minusculas(marca_actual);
+		if (marca_actual.find(marca,0)!=std::string::npos)
+			return i;
+	}
+	return no_encontrado;
 }
 
 int Financiero::BuscarDni(std::string Dni) {
@@ -478,8 +513,8 @@ std::string Financiero::ticket_GenerarId(){
 	
 
 void Financiero::ImprimirTicket(std::string codigo){
-	///Primero, debemos ordenar los tickets para poder buscar por código
-	Ordenar(por_id);
+	///Primero, debemos  los tickets para poder buscar por código
+	(por_id);
 	///Segundo, buscar todos los ID's iguales, guardando el DNI Cliente y código/s del/os producto/s
 	std::string buscar_comprador;
 	vector<Compras> productos_comprados;
@@ -623,11 +658,7 @@ struct Cl_Pr_Tk Financiero::MostrarTicket(std::string id){
 
 
 
-
-
-
-
-
+///Orden para clientes / productos / tickes
 void Financiero::Ordenar(CriterioOrden Criterio){
 	switch(Criterio){
 	///Orden para clientes

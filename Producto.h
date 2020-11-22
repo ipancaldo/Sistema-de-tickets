@@ -21,6 +21,7 @@ public:
 	std::string prod_VerDescr() const;
 	bool prod_VerEstado() const;
 	
+	void prod_EditarCodigo(std::string);
 	void prod_EditarNombre(std::string);
 	void prod_EditarMarca(std::string);
 	void prod_EditarValor(float);
@@ -30,6 +31,7 @@ public:
 	void HabilitarProducto();
 	
 	std::string ValidarDatos();
+	std::string validarExistenciaCodigo(); //Sólo para verificar si el código ya existe y no sobreescribir
 };
 
 bool criterio_de_comparacion_pnombre(const Producto &p1, const Producto &p2);

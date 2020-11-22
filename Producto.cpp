@@ -1,5 +1,6 @@
 #include "Producto.h"
 #include "Ayuda.h"
+#include "Financiero.h"
 
 Producto::Producto() {
 	
@@ -40,6 +41,10 @@ bool Producto::prod_VerEstado() const{
 	return m_activo;
 }
 
+
+void Producto::prod_EditarCodigo(std::string cod){
+	m_prod_cod = cod;
+}
 void Producto::prod_EditarNombre(std::string nom){
 	m_prod_nom = nom;
 }
@@ -66,13 +71,27 @@ void Producto::HabilitarProducto(){
 
 std::string Producto::ValidarDatos() {
 	std::string errores;
+	if (m_prod_cod.size()==0) errores+="El código no puede estar vacío\n";
+	if (m_prod_cod.size()>13) errores+="El código no puede tener más de 13 caracteres\n";
+	
+//	if (f.BuscarCodProd(m_prod_cod)!=-1)
+//		errores+="El código ya se encuentra cargado\n";
 	if (m_prod_nom.size()==0) errores+="El nombre no puede estar vacio\n";
 	if (m_prod_nom.size()>30) errores+="El nombre es demasiado largo\n";
 	if (m_prod_marca.size()==0) errores+="La marca no puede estar vacia\n";
 	if (m_prod_marca.size()>30) errores+="La marca es demasiada larga\n";
 	if (m_prod_valor==-1) errores+="El precio no puede ser negativo\n";
+	if (m_prod_valor==0) errores+="El precio no puede estar vacío\n";
 	if (m_prod_descr.size()>500) errores+="La descripción es demasiado larga\n";
 	return errores;
+}
+
+std::string Producto::validarExistenciaCodigo() {
+	std::string error;
+	Financiero f;
+	if (f.BuscarCodProd(m_prod_cod)!=-1)
+		error="El código ya se encuentra cargado\n";
+	return error;
 }
 
 bool criterio_de_comparacion_pnombre(const Producto &p1, const Producto &p2) {
