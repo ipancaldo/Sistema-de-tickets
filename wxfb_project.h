@@ -52,12 +52,13 @@ class BasePrincipal : public wxFrame
 		wxButton* m_button4;
 		wxStaticText* m_staticText4;
 		wxStaticText* numeroTicket;
+		wxButton* m_button27;
 		wxGrid* m_grilla;
 		wxStaticText* m_staticText5;
 		wxStaticText* precioTotal;
 		wxButton* m_cerrardia;
 		wxButton* m_cancelar;
-		wxButton* m_button6;
+		wxButton* m_guardar;
 		wxButton* m_imprimir;
 
 		// Virtual event handlers, overide them in your derived class
@@ -66,8 +67,10 @@ class BasePrincipal : public wxFrame
 		virtual void ClickBotonAdministrarCliente( wxCommandEvent& event ) { event.Skip(); }
 		virtual void agregarProductoGrilla( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickBotonAdministrarProducto( wxCommandEvent& event ) { event.Skip(); }
+		virtual void ClickBotonHistorialTickets( wxCommandEvent& event ) { event.Skip(); }
 		virtual void clickBotonCerrarDia( wxCommandEvent& event ) { event.Skip(); }
 		virtual void Salir( wxCommandEvent& event ) { event.Skip(); }
+		virtual void Guardar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ImprimirTicket( wxCommandEvent& event ) { event.Skip(); }
 
 
@@ -231,6 +234,38 @@ class VentanaAgrEditProductos : public wxDialog
 
 		VentanaAgrEditProductos( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 451,344 ), long style = wxDEFAULT_DIALOG_STYLE );
 		~VentanaAgrEditProductos();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class VentanaTickets
+///////////////////////////////////////////////////////////////////////////////
+class VentanaTickets : public wxDialog
+{
+	private:
+
+	protected:
+		wxStaticText* m_ticket_titulo;
+		wxButton* m_cargar_todos_tickets;
+		wxStaticText* m_staticText18;
+		wxTextCtrl* m_cajaticket_buscar;
+		wxButton* m_ticket_buscar;
+		wxGrid* m_grilla_tickets;
+		wxButton* m_p_aceptar;
+		wxButton* m_p_cancelar;
+
+		// Virtual event handlers, overide them in your derived class
+		virtual void ClickBotonBuscarTodosTickets( wxCommandEvent& event ) { event.Skip(); }
+		virtual void EnterBuscar( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnClickBuscarTicket( wxCommandEvent& event ) { event.Skip(); }
+		virtual void ClickAceptarAdmProducto( wxCommandEvent& event ) { event.Skip(); }
+		virtual void ClickCancelarAdmProducto( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		VentanaTickets( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 490,421 ), long style = wxDEFAULT_DIALOG_STYLE );
+		~VentanaTickets();
 
 };
 

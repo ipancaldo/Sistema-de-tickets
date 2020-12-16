@@ -1,0 +1,14 @@
+Ticket número: 2324
+Datos del comprador:
+Nombre y apellido:  
+DNI: 
+Local: 
+************************
+   Producto                   Cantidad          Precio
+- Insecticida m/m 300gr - Baygon   25    $1437.25
+Envase azul
+- Talco pies 200gr - Rexona   1    $57.49
+Efficient
+- Pañales g x36 - Parents choice   20    $1758
+9 a 13kg
+Total: $3252.74

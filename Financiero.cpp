@@ -514,7 +514,7 @@ std::string Financiero::ticket_GenerarId(){
 
 void Financiero::ImprimirTicket(std::string codigo){
 	///Primero, debemos  los tickets para poder buscar por código
-	(por_id);
+	Ordenar(por_id);
 	///Segundo, buscar todos los ID's iguales, guardando el DNI Cliente y código/s del/os producto/s
 	std::string buscar_comprador;
 	vector<Compras> productos_comprados;
@@ -534,7 +534,7 @@ void Financiero::ImprimirTicket(std::string codigo){
 			productos_comprados.push_back(aux);
 		}
 	}
-	///Hacemos realizamos la busqueda del cliente
+	///Realizamos la busqueda del cliente
 	Cliente comprador;
 	for(int i=0;i<CantidadClientes();i++) { 
 		if(buscar_comprador == m_clientes[i].VerDNI()){

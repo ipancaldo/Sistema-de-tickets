@@ -5,7 +5,8 @@ using namespace std;
 Ticket::Ticket() {
 }
 
-Ticket::Ticket(std::string dia, std::string mes, std::string anio, std::string id, std::string dni, std::string cod_prod, float precio, int cant){
+Ticket::Ticket(std::string dia, std::string mes, std::string anio, std::string id, 
+			   std::string dni, std::string cod_prod, float precio, int cant){
 	this-> m_dia = dia;
 	this-> m_mes = mes;
 	this-> m_anio = anio;
