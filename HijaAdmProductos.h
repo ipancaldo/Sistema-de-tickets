@@ -24,7 +24,7 @@ protected:
 	
 public:
 	HijaAdmProductos(wxWindow *parent, Financiero *financiero);
-	void RefrescarGrilla ();
+	void RefrescarGrilla();
 //	~HijaAdmProductos();
 };
 

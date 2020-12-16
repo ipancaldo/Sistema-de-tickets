@@ -47,7 +47,7 @@ void HijaAdmProductos::RefrescarGrilla(){
 			m_p_grilla->SetCellValue(i,3,"$" + mystring);
 			m_p_grilla->SetCellValue(i,4,p.prod_VerDescr());
 		}
-	}
+}
 
 
 

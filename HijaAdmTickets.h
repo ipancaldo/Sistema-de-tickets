@@ -16,6 +16,7 @@ protected:
 	
 public:
 	HijaAdmTickets(wxWindow *parent, Financiero *financiero);
+	void RefrescarGrilla();
 	~HijaAdmTickets();
 };
 

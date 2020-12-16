@@ -1,0 +1,12 @@
+Ticket número: 2308
+Datos del comprador:
+Nombre y apellido: Ignacio Pancaldo
+DNI: 34563466
+Local: Wanpisu
+************************
+   Producto                   Cantidad          Precio
+- Insecticida m/m 300gr - Baygon   4    $351.6
+Envase azul
+- Talco pies 200gr - Rexona   2    $175.8
+Efficient
+Total: $527.4

@@ -1,0 +1,10 @@
+Ticket número: 2327
+Datos del comprador:
+Nombre y apellido: Ignacio Pancaldo
+DNI: 34563466
+Local: Wanpisu
+************************
+   Producto                   Cantidad          Precio
+- Insecticida m/m 300gr - Baygon   4    $229.96
+Envase azul
+Total: $229.96
