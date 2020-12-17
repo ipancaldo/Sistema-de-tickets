@@ -54,6 +54,7 @@ class BasePrincipal : public wxFrame
 		wxStaticText* numeroTicket;
 		wxButton* m_button27;
 		wxGrid* m_grilla;
+		wxButton* eliminar_producto;
 		wxStaticText* m_staticText5;
 		wxStaticText* precioTotal;
 		wxButton* m_cerrardia;
@@ -68,6 +69,7 @@ class BasePrincipal : public wxFrame
 		virtual void agregarProductoGrilla( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickBotonAdministrarProducto( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickBotonHistorialTickets( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnClickEliminarProducto( wxCommandEvent& event ) { event.Skip(); }
 		virtual void clickBotonCerrarDia( wxCommandEvent& event ) { event.Skip(); }
 		virtual void Salir( wxCommandEvent& event ) { event.Skip(); }
 		virtual void Guardar( wxCommandEvent& event ) { event.Skip(); }

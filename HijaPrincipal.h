@@ -8,6 +8,7 @@ class HijaPrincipal : public BasePrincipal {
 private:
 	
 protected:
+	void OnClickEliminarProducto( wxCommandEvent& event )  override;
 	void Guardar( wxCommandEvent& event )  override; ///Guardamos todos los tickets en la DB
 	void ClickBotonHistorialTickets( wxCommandEvent& event )  override;
 	void agregarProductoGrilla( wxCommandEvent& event )  override;
@@ -20,6 +21,7 @@ protected:
 	void ImprimirTicket( wxCommandEvent& event )  override;
 	
 	void refrescarGrilla(struct grillaTicket);
+	void actualizarGrilla();
 	
 	void cargar_datos_fila(int fila);
 	///Como lo usamos varias veces, guardamos ese puntero

@@ -139,10 +139,13 @@ BasePrincipal::BasePrincipal( wxWindow* parent, wxWindowID id, const wxString& t
 	bSizer7 = new wxBoxSizer( wxHORIZONTAL );
 
 
+	bSizer7->Add( 0, 0, 1, wxEXPAND, 5 );
+
+
 	bSizer7->Add( 0, 0, 1, 0, 5 );
 
-
-	bSizer7->Add( 0, 0, 1, wxEXPAND, 5 );
+	eliminar_producto = new wxButton( this, wxID_ANY, wxT("Eliminar producto"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer7->Add( eliminar_producto, 0, wxALL, 5 );
 
 
 	bSizer7->Add( 0, 0, 1, wxEXPAND, 5 );
@@ -204,6 +207,7 @@ BasePrincipal::BasePrincipal( wxWindow* parent, wxWindowID id, const wxString& t
 	m_agregarProducto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::agregarProductoGrilla ), NULL, this );
 	m_button4->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ClickBotonAdministrarProducto ), NULL, this );
 	m_button27->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ClickBotonHistorialTickets ), NULL, this );
+	eliminar_producto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::OnClickEliminarProducto ), NULL, this );
 	m_cerrardia->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::clickBotonCerrarDia ), NULL, this );
 	m_cancelar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::Salir ), NULL, this );
 	m_guardar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::Guardar ), NULL, this );
@@ -219,6 +223,7 @@ BasePrincipal::~BasePrincipal()
 	m_agregarProducto->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::agregarProductoGrilla ), NULL, this );
 	m_button4->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ClickBotonAdministrarProducto ), NULL, this );
 	m_button27->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ClickBotonHistorialTickets ), NULL, this );
+	eliminar_producto->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::OnClickEliminarProducto ), NULL, this );
 	m_cerrardia->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::clickBotonCerrarDia ), NULL, this );
 	m_cancelar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::Salir ), NULL, this );
 	m_guardar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::Guardar ), NULL, this );

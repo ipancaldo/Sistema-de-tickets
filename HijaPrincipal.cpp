@@ -215,3 +215,43 @@ void HijaPrincipal::Guardar( wxCommandEvent& event )  {
 	}
 }
 
+void HijaPrincipal::OnClickEliminarProducto( wxCommandEvent& event )  {
+	int f = m_grilla-> GetGridCursorRow();///Para tomar la grilla seleccionada
+	/// Mensaje de alerta, en caso de aceptar, se guardan los cambios (eliminar)
+	int x = wxMessageBox("Esta seguro de eliminar?","Advertencia", wxYES_NO|wxICON_QUESTION);
+	
+	if(x==wxYES){
+		///Creamos un producto por referencia para seleccionarlo y luego deshabilitarlo
+		ticketCargando.erase(ticketCargando.begin()+f);
+		actualizarGrilla();
+	}	
+}
+
+void HijaPrincipal::actualizarGrilla(){
+	///Si la grilla no está vacía, hace esto
+	if(m_grilla->GetNumberRows()!=0)
+		m_grilla->DeleteRows(0,m_grilla->GetNumberRows());
+	
+	for(size_t i=0 ; i<ticketCargando.size(); i++){
+		m_grilla->AppendRows(); //Agrega grillas a medida que metemos datosp
+		
+		Ticket t = ticketCargando[i];
+		Producto p = m_financiero->SeleccionarProducto(m_financiero->BuscarCodProd(t.ticket_VerCodigoProd()));
+//		Cliente c = m_financiero->SeleccionarCliente(m_financiero->BuscarDni(t.ticket_VerDNI()));
+		
+		
+		///SetCellValue = setear valor de la celda, que va a ir adentro. i fila 0 columna
+		m_grilla->SetCellValue(i,0,p.prod_VerNombre());
+		m_grilla->SetCellValue(i,1,p.prod_VerMarca());
+		m_grilla->SetCellValue(i,2,p.prod_VerDescr());
+		/*m_p_grilla->SetColFormatFloat(i,3,p.prod_VerValor());*/
+		///Transformamos el float en un wxstring para que se pueda mostrar
+		///%.2f hace que se vean sólo 2 decimales
+		wxString mystring = wxString::Format(wxT("%.2f"), t.ticket_VerPrecio());
+		m_grilla->SetCellValue(i,3,"$" + mystring);
+		m_grilla->SetCellValue(i,4,p.prod_VerDescr());
+		wxString subtotalString = wxString::Format(wxT("%.2f"), t.ticket_VerTotal());
+		m_grilla->SetCellValue(i,5,"$" + subtotalString);
+	}
+}
+
