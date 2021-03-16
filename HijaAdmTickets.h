@@ -8,9 +8,8 @@ class HijaAdmTickets : public VentanaTickets {
 private:
 	Financiero *m_financiero;
 protected:
-	void ClickBotonBuscarTodosTickets( wxCommandEvent& event )  override;
-	void EnterBuscar( wxCommandEvent& event )  override;
 	void OnClickBuscarTicket( wxCommandEvent& event )  override;
+	void EnterBuscar( wxCommandEvent& event )  override;
 	void ClickAceptarAdmProducto( wxCommandEvent& event )  override;
 	void ClickCancelarAdmProducto( wxCommandEvent& event )  override;
 	

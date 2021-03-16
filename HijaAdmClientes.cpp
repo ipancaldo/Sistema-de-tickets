@@ -17,11 +17,7 @@ void HijaAdmClientes::RefrescarGrilla(){
 	if(m_c_grilla->GetNumberRows()!=0)
 		m_c_grilla->DeleteRows(0,m_c_grilla->GetNumberRows());
 	
-	///SI DESCOMENTO ES PARA PROBAR CON DESHABILITAR Y NO CON ELIMINAR		
-	//	std::vector<int> v = m_financiero->MostrarClientesHabilitados(true);
-	//	for(size_t i=0 ; i<v.size(); i++){
 	for(int i=0 ; i<m_financiero->CantidadClientes(); i++){
-		//		Cliente &c = m_financiero->SeleccionarCliente(v[i]);
 		Cliente &c = m_financiero->SeleccionarCliente(i);
 		///Para mostrar clientes HABILITADOS (cuando se "elimina" se deshabilita)
 		if(c.VerEstado() == true){
@@ -174,15 +170,6 @@ void HijaAdmClientes::ClickAceptarAdmCliente( wxCommandEvent& event )  {
 	EndModal(1);
 }
 
-///Esto creo que no es necesario, es para ir cargando las filas en la cuadrícula
-///a medida que va haciendo algo el sistema
 void HijaAdmClientes::cargar_datos_fila(int fila){
-	//	Cliente &c = m_financiero->SeleccionarCliente(fila);
-	//	
-	//	m_c_grilla->SetCellValue(fila, 0, std_to_wx(c.VerApellido())+", "+std_to_wx(c.VerNombre());
-	//	m_c_grilla->SetCellValue(fila, 1, std_to_wx(c.VerDNI()) );
-	//	m_c_grilla->SetCellValue(fila, 2, std_to_wx(c.VerAlias()) );
-	//	m_c_grilla->SetCellValue(fila, 3, std_to_wx(c.VerDireccion()) );
-	//	m_c_grilla->SetCellValue(fila, 4, std_to_wx(c.VerTelefono()) );
-	//	m_c_grilla->SetCellValue(fila, 5, std_to_wx(c.VerMail()) );
+
 }

@@ -8,7 +8,6 @@ class HijaAgregarP : public VentanaAgrEditProductos {
 private:
 	Financiero *m_financiero;
 protected:
-	void OnClickButtonNuevaMarca( wxCommandEvent& event )  override;
 	void OnClickButtonAceptarA( wxCommandEvent& event )  override;
 	void OnClickButtonCancelarB( wxCommandEvent& event )  override;
 	

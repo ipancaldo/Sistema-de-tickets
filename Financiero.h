@@ -22,7 +22,7 @@ enum CriterioOrden { por_nombre, por_apellido, por_alias, por_mail, por_direccio
 
 class Financiero {
 public:
-	Financiero();
+	Financiero(); ///Cuando inicia, carga todos los tickets, clientes y productos desde los archivos binarios
 	
 	Cliente &SeleccionarCliente(int i); ///Tomamos un cliente para poder manipularlo
 	void CargarClientes(std::string); ///Realiza la carga de todos los clientes desde un archivo binario
@@ -35,26 +35,26 @@ public:
 	
 	Producto &SeleccionarProducto(int i);
 //	void GenerarProducto(std::string, std::string, std::string, std::string, float); ///Genera un product COMPLETO, luego se agrega al listado con AgregarProducto
-	void CargarProductos(std::string);
+	void CargarProductos(std::string); ///Cargama desde el archivo binario los datos de todos los productos
 	void AgregarProducto(Producto); ///Agrega un producto
 	void EliminarProducto(int); ///Elimina un producto
 	void GuardarProductos(); ///Guarda todas las modificaciones efectuadas (agregar/eliminar/modificar)
-	int CantidadProductos() const;
+	int CantidadProductos() const; ///Retorna la cantidad de productos que poseemos en la DB
 	std::vector<std::string> ListarCodProd(); ///Lista códigos en USO, no todos los existentes
 	std::string prod_GenerarCodBarras(); ///No se usa, ahora se genera por código de barras real
 	
 	
 	Ticket &SeleccionarTicket(int i);
-	void CargarTickets(std::string);
-	void AgregarTicket(Ticket);
-	void GuardarTicketsBin();
-	void EliminarTicket(int);
-	int CantidadTickets() const;	
+	void CargarTickets(std::string); ///Cargama desde el archivo binario los datos de todos los tickets
+	void AgregarTicket(Ticket); ///Agrega el ticket al vector actual de de tickets, luego lo almacena en el archivo binario
+	void GuardarTicketsBin(); ///Guarda los tickets almacenados en el vector de tickets en proceso en el archivo binario DB
+	void EliminarTicket(int); ///Elimina un ticket. Primero lo hace del vector actual
+	int CantidadTickets() const; ///Retorna la cantidad de tickets que poseemos
 	float TotalTicket(std::string);///Muestra el monto total vendido por un ticket
 	void ImprimirTicket(std::string); ///Imprimimos en txt el código de ticket que pasemos
 									///Le pasamos el código de ticket a buscar
-	std::string ticket_GenerarId();
-	std::string ticket_VerUltimoIdString();
+	std::string ticket_GenerarId(); ///Busca en el archivo TXT el último ID de ticket y le súma +1 para generar uno nuevo
+	std::string ticket_VerUltimoIdString(); ///Retorna el último ID
 	int ticket_VerUltimoIdInt(); ///Sólo para corroborar, no tiene uso
 	std::vector<std::string> IdTicketsNoRepetidos(); ///Unifica los códigos repetidos
 	struct Cl_Pr_Tk MostrarTicket(std::string);///Muestra toda la info de un ticket
@@ -67,8 +67,8 @@ public:
 	int BuscarMail(std::string); ///Busqueda por mail
 	int BuscarDireccion(std::string); ///Busqueda por dirección
 	int BuscarTelefono(std::string); ///Busqueda por número telefónico
-	int BuscarDni(std::string); ///------------!!! CON ESTO MOSTRAMOS LOS DATOS DEL COMPRADOR
-	int BuscarCodProd(std::string); ///------------!!! CON ESTO MOSTRAMOS LOS DATOS DEL PRODUCTO
+	int BuscarDni(std::string); ///CON ESTO MOSTRAMOS LOS DATOS DEL COMPRADOR
+	int BuscarCodProd(std::string); ///CON ESTO MOSTRAMOS LOS DATOS DEL PRODUCTO
 	int BuscarNombreProd(std::string);
 	int BuscarMarcaProd(std::string);
 	int BuscarIdTicket(std::string);

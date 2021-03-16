@@ -48,10 +48,6 @@ HijaPrincipal::HijaPrincipal(Financiero *financiero) : ///Recibe puntero agenda
 
 
 void HijaPrincipal::ImprimirTicket( wxCommandEvent& event )  {
-//	for(size_t i=0;i<ticketCargando.size();i++) { 
-//		Ticket t = ticketCargando[i];
-//		m_financiero->AgregarTicket(t);
-//	}
 	HijaPrincipal::Guardar(event);
 	
 	///Genera el .txt
@@ -81,13 +77,6 @@ void HijaPrincipal::OnCambiarTamanioPrinc( wxSizeEvent& event )  {
 }
 
 
-void HijaPrincipal::clickBotonIniciarDia( wxCommandEvent& event )  {
-	event.Skip();
-}
-
-void HijaPrincipal::clickBotonCerrarDia( wxCommandEvent& event )  {
-	event.Skip();
-}
 
 void HijaPrincipal::agregarProductoGrilla( wxCommandEvent& event )  {
 	std::string codProd = wx_to_std(m_codigoProducto->GetValue()); //Almacenamos el cod prod
@@ -160,9 +149,6 @@ void HijaPrincipal::agregarProductoGrilla( wxCommandEvent& event )  {
 
 ///Además de refresacr, pasa todos los campos a wxString
 void HijaPrincipal::refrescarGrilla(struct grillaTicket prod){ 
-//	if(m_grilla->GetNumberRows()!=0)
-//		m_grilla->DeleteRows(0,m_grilla->GetNumberRows()); //Nos dice la cantidad de filas para luego trabajar
-	
 	int ultimaFila = m_grilla->GetNumberRows();
 	m_grilla->AppendRows(); //Crea una nueva fila
 	// Cuatro datos del Producto
@@ -190,8 +176,7 @@ void HijaPrincipal::ClickBotonHistorialTickets( wxCommandEvent& event )  {
 
 void HijaPrincipal::ClickBotonAdministrarCliente(wxCommandEvent& event)  {
 	HijaAdmClientes *win = new HijaAdmClientes(this, m_financiero);
-	/*if(*/win->ShowModal();/*==1)*////En caso de clickear agregar, devuelve 1 y refresca
-	//		RefrescarGrilla(); 
+	win->ShowModal();///En caso de clickear agregar, devuelve 1 y refresca
 	///Cuando creemos la grilla, se descomentan las dos lineas previas
 }
 
@@ -209,22 +194,30 @@ void HijaPrincipal::Guardar( wxCommandEvent& event )  {
 			m_financiero->AgregarTicket(ticketCargando[i]);
 		}
 		wxString nada = "";
+		costoTotal = 0;
 		numeroTicket->SetLabelText(nada);
+		///Con esto limpiamos la grilla para usarla de 0
+		if(m_grilla->GetNumberRows()!=0)
+			m_grilla->DeleteRows(0,m_grilla->GetNumberRows());
 	}else{
 		wxMessageBox("No hay ticket para guardar","error",wxOK|wxICON_ERROR);
 	}
 }
 
 void HijaPrincipal::OnClickEliminarProducto( wxCommandEvent& event )  {
-	int f = m_grilla-> GetGridCursorRow();///Para tomar la grilla seleccionada
-	/// Mensaje de alerta, en caso de aceptar, se guardan los cambios (eliminar)
-	int x = wxMessageBox("Esta seguro de eliminar?","Advertencia", wxYES_NO|wxICON_QUESTION);
-	
-	if(x==wxYES){
-		///Creamos un producto por referencia para seleccionarlo y luego deshabilitarlo
-		ticketCargando.erase(ticketCargando.begin()+f);
-		actualizarGrilla();
-	}	
+	if(m_grilla->GetNumberRows()==0){
+		wxMessageBox("No hay productos para borrar","error",wxOK|wxICON_ERROR);
+	}else{
+		int f = m_grilla-> GetGridCursorRow();///Para tomar la grilla seleccionada
+		/// Mensaje de alerta, en caso de aceptar, se guardan los cambios (eliminar)
+		int x = wxMessageBox("Esta seguro de eliminar?","Advertencia", wxYES_NO|wxICON_QUESTION);
+		
+		if(x==wxYES){
+			///Creamos un producto por referencia para seleccionarlo y luego deshabilitarlo
+			ticketCargando.erase(ticketCargando.begin()+f);
+			actualizarGrilla();
+		}
+	}
 }
 
 void HijaPrincipal::actualizarGrilla(){
@@ -237,14 +230,12 @@ void HijaPrincipal::actualizarGrilla(){
 		
 		Ticket t = ticketCargando[i];
 		Producto p = m_financiero->SeleccionarProducto(m_financiero->BuscarCodProd(t.ticket_VerCodigoProd()));
-//		Cliente c = m_financiero->SeleccionarCliente(m_financiero->BuscarDni(t.ticket_VerDNI()));
 		
 		
 		///SetCellValue = setear valor de la celda, que va a ir adentro. i fila 0 columna
 		m_grilla->SetCellValue(i,0,p.prod_VerNombre());
 		m_grilla->SetCellValue(i,1,p.prod_VerMarca());
 		m_grilla->SetCellValue(i,2,p.prod_VerDescr());
-		/*m_p_grilla->SetColFormatFloat(i,3,p.prod_VerValor());*/
 		///Transformamos el float en un wxstring para que se pueda mostrar
 		///%.2f hace que se vean sólo 2 decimales
 		wxString mystring = wxString::Format(wxT("%.2f"), t.ticket_VerPrecio());
@@ -253,5 +244,9 @@ void HijaPrincipal::actualizarGrilla(){
 		wxString subtotalString = wxString::Format(wxT("%.2f"), t.ticket_VerTotal());
 		m_grilla->SetCellValue(i,5,"$" + subtotalString);
 	}
+}
+
+HijaPrincipal::~HijaPrincipal() {
+	
 }
 

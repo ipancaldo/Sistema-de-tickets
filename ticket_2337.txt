@@ -1,0 +1,10 @@
+Ticket número: 2337
+Datos del comprador:
+Nombre y apellido: Ignacio Pancaldo
+DNI: 34563466
+Local: Wanpisu
+************************
+   Producto                   Cantidad          Precio
+- Insecticida m/m 300gr - Baygon   2    $1174.4
+Envase azul
+Total: $1174.4

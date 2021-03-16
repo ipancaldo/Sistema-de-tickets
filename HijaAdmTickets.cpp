@@ -33,25 +33,6 @@ void HijaAdmTickets::RefrescarGrilla(){
 	
 	/// Struct auxiliar para ir guardando los datos relevantes a mostrar del ticket
 	Cl_Pr_Tk aux;
-	/// Para mostrar tickets con ID unificado
-//	for(int i=0 ; i<TicketsNoRepetidos.size(); i++){	
-//		m_grilla_tickets->AppendRows();
-//		
-//		aux = m_financiero->MostrarTicket(TicketsNoRepetidos[i]);
-//		
-//		///Esto lo usamos sólo para cargar la fecha del ticket
-//		int pos = m_financiero->BuscarIdTicket(TicketsNoRepetidos[i]);
-//		Ticket t = m_financiero->SeleccionarTicket(pos);
-//		std::string fecha = t.ticket_VerDia()+"/"+t.ticket_VerMes()+"/"+t.ticket_VerAnio();
-//		
-//		
-//		///SetCellValue = setear valor de la celda, que va a ir adentro. i fila 0 columna
-//		m_grilla_tickets->SetCellValue(i,0,aux.id);
-//		m_grilla_tickets->SetCellValue(i,1,fecha);
-//		m_grilla_tickets->SetCellValue(i,2,aux.cliente_alias);
-//		wxString mystring = wxString::Format(wxT("%.2f"), aux.total_final);
-//		m_grilla_tickets->SetCellValue(i,3,"$" + mystring);
-//	}
 	
 	///Sólo seleccionamos los códigos ID únicos
 	std::vector<std::string> tickets = m_financiero->IdTicketsNoRepetidos();
@@ -75,17 +56,9 @@ void HijaAdmTickets::RefrescarGrilla(){
 		m_grilla_tickets->SetCellValue(i,2,c.VerApellido()+", "+c.VerNombre());
 		wxString mystring = wxString::Format(wxT("%.2f"), m_financiero->TotalTicket(t.ticket_VerId()));
 		m_grilla_tickets->SetCellValue(i,3,"$" + mystring);
-		
-		///-------ESTO VA A SERVIR CUANDO DESEEMOS VER EL DETALLE DE CADA COMPRA!
-//		wxString mystring = wxString::Format(wxT("%.2f"), m_financiero->ticket_VerTotal());
-//		m_grilla_tickets->SetCellValue(i,3,"$" + mystring);
 	}
 }
 
-
-void HijaAdmTickets::ClickBotonBuscarTodosTickets( wxCommandEvent& event )  {
-	event.Skip();
-}
 
 void HijaAdmTickets::EnterBuscar( wxCommandEvent& event )  {
 	OnClickBuscarTicket(event);

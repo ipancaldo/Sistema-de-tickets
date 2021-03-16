@@ -17,10 +17,6 @@ HijaAgregarP::HijaAgregarP(wxWindow *parent, Financiero *financiero)
 	SetTitle("Agregar producto");
 }
 
-void HijaAgregarP::OnClickButtonNuevaMarca( wxCommandEvent& event )  {
-	event.Skip();
-}
-
 void HijaAgregarP::OnClickButtonAceptarA( wxCommandEvent& event )  {
 	// Creamos un producto para verificar errores (no por referencia para no guardar en este paso)
 	///Transformamos el wxString del precio a float para poder pasarselo al constructor

@@ -11,7 +11,6 @@ protected:
 	void ClickBotonAgregarProducto( wxCommandEvent& event )  override;
 	void ClickBotonEditarProducto( wxCommandEvent& event )  override;
 	void ClickBotonEliminarProducto( wxCommandEvent& event )  override; //Deshabilita, no elimina
-	void OnClickCargarProductos( wxCommandEvent& event )  override;
 	
 	void EnterBuscar( wxCommandEvent& event )  override;
 	void OnClickBuscarProd( wxCommandEvent& event )  override;
@@ -25,7 +24,7 @@ protected:
 public:
 	HijaAdmProductos(wxWindow *parent, Financiero *financiero);
 	void RefrescarGrilla();
-//	~HijaAdmProductos();
+	~HijaAdmProductos();
 };
 
 #endif

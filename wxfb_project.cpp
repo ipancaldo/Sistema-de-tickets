@@ -19,30 +19,31 @@ BasePrincipal::BasePrincipal( wxWindow* parent, wxWindowID id, const wxString& t
 	wxBoxSizer* bSizer3;
 	bSizer3 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_staticText2 = new wxStaticText( this, wxID_ANY, wxT("Cliente:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText2->Wrap( -1 );
-	bSizer3->Add( m_staticText2, 0, wxALL, 5 );
+	m_staticText27 = new wxStaticText( this, wxID_ANY, wxT("Día:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText27->Wrap( -1 );
+	bSizer3->Add( m_staticText27, 0, wxALL, 5 );
 
-	wxArrayString m_clientesChoices;
-	m_clientes = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_clientesChoices, 0 );
-	m_clientes->SetSelection( 0 );
-	bSizer3->Add( m_clientes, 1, wxALL, 5 );
-
-
-	bSizer3->Add( 0, 0, 1, wxEXPAND, 5 );
-
-	DiaHoy = new wxStaticText( this, wxID_ANY, wxT("HoyDia"), wxDefaultPosition, wxDefaultSize, 0 );
+	DiaHoy = new wxStaticText( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	DiaHoy->Wrap( -1 );
 	bSizer3->Add( DiaHoy, 0, wxALL, 5 );
-
-	m_iniciardia = new wxButton( this, wxID_ANY, wxT("Iniciar Día"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer3->Add( m_iniciardia, 1, wxALL, 5 );
 
 
 	bSizer3->Add( 0, 0, 1, wxEXPAND, 5 );
 
 	m_button3 = new wxButton( this, wxID_ANY, wxT("Administrar clientes"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer3->Add( m_button3, 0, wxALL, 5 );
+
+
+	bSizer3->Add( 0, 0, 1, wxEXPAND, 5 );
+
+	m_button4 = new wxButton( this, wxID_ANY, wxT("Administrar productos"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer3->Add( m_button4, 0, wxALL, 5 );
+
+
+	bSizer3->Add( 0, 0, 1, wxEXPAND, 5 );
+
+	m_button27 = new wxButton( this, wxID_ANY, wxT("Historial tickets"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer3->Add( m_button27, 0, wxALL, 5 );
 
 
 	bSizer2->Add( bSizer3, 0, wxEXPAND, 5 );
@@ -70,9 +71,6 @@ BasePrincipal::BasePrincipal( wxWindow* parent, wxWindowID id, const wxString& t
 
 	bSizer4->Add( 0, 0, 1, wxEXPAND, 5 );
 
-	m_button4 = new wxButton( this, wxID_ANY, wxT("Administrar productos"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer4->Add( m_button4, 0, wxALL, 5 );
-
 
 	bSizer2->Add( bSizer4, 0, wxEXPAND, 5 );
 
@@ -90,8 +88,8 @@ BasePrincipal::BasePrincipal( wxWindow* parent, wxWindowID id, const wxString& t
 
 	bSizer5->Add( 0, 0, 1, wxEXPAND, 5 );
 
-	m_button27 = new wxButton( this, wxID_ANY, wxT("Historial tickets"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer5->Add( m_button27, 0, wxALL, 5 );
+	eliminar_producto = new wxButton( this, wxID_ANY, wxT("Eliminar producto"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer5->Add( eliminar_producto, 0, wxALL, 5 );
 
 
 	bSizer2->Add( bSizer5, 0, wxEXPAND, 5 );
@@ -144,9 +142,6 @@ BasePrincipal::BasePrincipal( wxWindow* parent, wxWindowID id, const wxString& t
 
 	bSizer7->Add( 0, 0, 1, 0, 5 );
 
-	eliminar_producto = new wxButton( this, wxID_ANY, wxT("Eliminar producto"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer7->Add( eliminar_producto, 0, wxALL, 5 );
-
 
 	bSizer7->Add( 0, 0, 1, wxEXPAND, 5 );
 
@@ -176,9 +171,6 @@ BasePrincipal::BasePrincipal( wxWindow* parent, wxWindowID id, const wxString& t
 	wxBoxSizer* bSizer6;
 	bSizer6 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_cerrardia = new wxButton( this, wxID_ANY, wxT("Cerrar día"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer6->Add( m_cerrardia, 0, wxALL, 5 );
-
 
 	bSizer6->Add( 0, 0, 1, 0, 5 );
 
@@ -202,13 +194,11 @@ BasePrincipal::BasePrincipal( wxWindow* parent, wxWindowID id, const wxString& t
 
 	// Connect Events
 	this->Connect( wxEVT_SIZE, wxSizeEventHandler( BasePrincipal::OnCambiarTamanioPrinc ) );
-	m_iniciardia->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::clickBotonIniciarDia ), NULL, this );
 	m_button3->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ClickBotonAdministrarCliente ), NULL, this );
-	m_agregarProducto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::agregarProductoGrilla ), NULL, this );
 	m_button4->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ClickBotonAdministrarProducto ), NULL, this );
 	m_button27->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ClickBotonHistorialTickets ), NULL, this );
+	m_agregarProducto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::agregarProductoGrilla ), NULL, this );
 	eliminar_producto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::OnClickEliminarProducto ), NULL, this );
-	m_cerrardia->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::clickBotonCerrarDia ), NULL, this );
 	m_cancelar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::Salir ), NULL, this );
 	m_guardar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::Guardar ), NULL, this );
 	m_imprimir->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ImprimirTicket ), NULL, this );
@@ -218,13 +208,11 @@ BasePrincipal::~BasePrincipal()
 {
 	// Disconnect Events
 	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( BasePrincipal::OnCambiarTamanioPrinc ) );
-	m_iniciardia->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::clickBotonIniciarDia ), NULL, this );
 	m_button3->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ClickBotonAdministrarCliente ), NULL, this );
-	m_agregarProducto->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::agregarProductoGrilla ), NULL, this );
 	m_button4->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ClickBotonAdministrarProducto ), NULL, this );
 	m_button27->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ClickBotonHistorialTickets ), NULL, this );
+	m_agregarProducto->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::agregarProductoGrilla ), NULL, this );
 	eliminar_producto->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::OnClickEliminarProducto ), NULL, this );
-	m_cerrardia->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::clickBotonCerrarDia ), NULL, this );
 	m_cancelar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::Salir ), NULL, this );
 	m_guardar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::Guardar ), NULL, this );
 	m_imprimir->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( BasePrincipal::ImprimirTicket ), NULL, this );
@@ -514,9 +502,6 @@ VentanaAdministrarProductos::VentanaAdministrarProductos( wxWindow* parent, wxWi
 
 	bSizer20->Add( 0, 0, 1, wxEXPAND, 5 );
 
-	m_p_cargar = new wxButton( this, wxID_ANY, wxT("Cargar productos"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer20->Add( m_p_cargar, 0, wxALL, 5 );
-
 
 	bSizer20->Add( 0, 0, 1, wxEXPAND, 5 );
 
@@ -591,7 +576,6 @@ VentanaAdministrarProductos::VentanaAdministrarProductos( wxWindow* parent, wxWi
 	m_p_agregar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAdministrarProductos::ClickBotonAgregarProducto ), NULL, this );
 	m_p_editar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAdministrarProductos::ClickBotonEditarProducto ), NULL, this );
 	m_p_eliminar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAdministrarProductos::ClickBotonEliminarProducto ), NULL, this );
-	m_p_cargar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAdministrarProductos::OnClickCargarProductos ), NULL, this );
 	m_prod_buscar->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( VentanaAdministrarProductos::EnterBuscar ), NULL, this );
 	m_p_buscar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAdministrarProductos::OnClickBuscarProd ), NULL, this );
 	m_p_grilla->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( VentanaAdministrarProductos::OnDobleClickGProducto ), NULL, this );
@@ -606,7 +590,6 @@ VentanaAdministrarProductos::~VentanaAdministrarProductos()
 	m_p_agregar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAdministrarProductos::ClickBotonAgregarProducto ), NULL, this );
 	m_p_editar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAdministrarProductos::ClickBotonEditarProducto ), NULL, this );
 	m_p_eliminar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAdministrarProductos::ClickBotonEliminarProducto ), NULL, this );
-	m_p_cargar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAdministrarProductos::OnClickCargarProductos ), NULL, this );
 	m_prod_buscar->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( VentanaAdministrarProductos::EnterBuscar ), NULL, this );
 	m_p_buscar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAdministrarProductos::OnClickBuscarProd ), NULL, this );
 	m_p_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( VentanaAdministrarProductos::OnDobleClickGProducto ), NULL, this );
@@ -635,7 +618,7 @@ VentanaAgrEditProductos::VentanaAgrEditProductos( wxWindow* parent, wxWindowID i
 	bSizer28->Add( m_staticText25, 0, wxALL, 5 );
 
 	m_p_codigo = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer28->Add( m_p_codigo, 0, wxALL, 5 );
+	bSizer28->Add( m_p_codigo, 1, wxALL, 5 );
 
 
 	bSizer22->Add( bSizer28, 0, wxEXPAND, 5 );
@@ -643,24 +626,12 @@ VentanaAgrEditProductos::VentanaAgrEditProductos( wxWindow* parent, wxWindowID i
 	wxBoxSizer* bSizer80;
 	bSizer80 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_staticText37 = new wxStaticText( this, wxID_ANY, wxT("Marca:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText37 = new wxStaticText( this, wxID_ANY, wxT("Marca:                   "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText37->Wrap( -1 );
 	bSizer80->Add( m_staticText37, 0, wxALL, 5 );
 
 	m_p_marca = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer80->Add( m_p_marca, 0, wxALL, 5 );
-
-
-	bSizer80->Add( 0, 0, 1, wxEXPAND, 5 );
-
-	m_p_buscarMarcaLista = new wxBitmapComboBox( this, wxID_ANY, wxT("Productos"), wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-	bSizer80->Add( m_p_buscarMarcaLista, 0, wxALL, 5 );
-
-
-	bSizer80->Add( 0, 0, 1, wxEXPAND, 5 );
-
-	m_p_nuevaMarca = new wxButton( this, wxID_ANY, wxT("Nueva marca"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer80->Add( m_p_nuevaMarca, 0, wxALL, 5 );
+	bSizer80->Add( m_p_marca, 1, wxALL, 5 );
 
 
 	bSizer22->Add( bSizer80, 0, wxEXPAND, 5 );
@@ -668,7 +639,7 @@ VentanaAgrEditProductos::VentanaAgrEditProductos( wxWindow* parent, wxWindowID i
 	wxBoxSizer* bSizer81;
 	bSizer81 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_staticText38 = new wxStaticText( this, wxID_ANY, wxT("Producto: "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText38 = new wxStaticText( this, wxID_ANY, wxT("Producto:             "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText38->Wrap( -1 );
 	bSizer81->Add( m_staticText38, 0, wxALL, 5 );
 
@@ -681,22 +652,12 @@ VentanaAgrEditProductos::VentanaAgrEditProductos( wxWindow* parent, wxWindowID i
 	wxBoxSizer* bSizer82;
 	bSizer82 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_staticText40 = new wxStaticText( this, wxID_ANY, wxT("Precio:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText40 = new wxStaticText( this, wxID_ANY, wxT("Precio:                   "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText40->Wrap( -1 );
 	bSizer82->Add( m_staticText40, 0, wxALL, 5 );
 
 	m_p_precio = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer82->Add( m_p_precio, 0, wxALL, 5 );
-
-
-	bSizer82->Add( 0, 0, 1, wxEXPAND, 5 );
-
-	m_staticText42 = new wxStaticText( this, wxID_ANY, wxT("Stock:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText42->Wrap( -1 );
-	bSizer82->Add( m_staticText42, 0, wxALL, 5 );
-
-	m_p_stock = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer82->Add( m_p_stock, 1, wxALL, 5 );
+	bSizer82->Add( m_p_precio, 1, wxALL, 5 );
 
 
 	bSizer22->Add( bSizer82, 0, wxEXPAND, 5 );
@@ -733,7 +694,6 @@ VentanaAgrEditProductos::VentanaAgrEditProductos( wxWindow* parent, wxWindowID i
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	m_p_nuevaMarca->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAgrEditProductos::OnClickButtonNuevaMarca ), NULL, this );
 	m_p_aceptarA->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAgrEditProductos::OnClickButtonAceptarA ), NULL, this );
 	m_p_cancelarB->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAgrEditProductos::OnClickButtonCancelarB ), NULL, this );
 }
@@ -741,7 +701,6 @@ VentanaAgrEditProductos::VentanaAgrEditProductos( wxWindow* parent, wxWindowID i
 VentanaAgrEditProductos::~VentanaAgrEditProductos()
 {
 	// Disconnect Events
-	m_p_nuevaMarca->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAgrEditProductos::OnClickButtonNuevaMarca ), NULL, this );
 	m_p_aceptarA->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAgrEditProductos::OnClickButtonAceptarA ), NULL, this );
 	m_p_cancelarB->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaAgrEditProductos::OnClickButtonCancelarB ), NULL, this );
 
@@ -754,15 +713,12 @@ VentanaTickets::VentanaTickets( wxWindow* parent, wxWindowID id, const wxString&
 	wxBoxSizer* bSizer29;
 	bSizer29 = new wxBoxSizer( wxVERTICAL );
 
-	m_ticket_titulo = new wxStaticText( this, wxID_ANY, wxT("Ventana titulo"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_ticket_titulo->Wrap( -1 );
-	bSizer29->Add( m_ticket_titulo, 0, wxALL, 5 );
-
 	wxBoxSizer* bSizer30;
 	bSizer30 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_cargar_todos_tickets = new wxButton( this, wxID_ANY, wxT("Cargar tickets"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer30->Add( m_cargar_todos_tickets, 0, wxALL, 5 );
+	m_ticket_titulo = new wxStaticText( this, wxID_ANY, wxT("Ventana titulo"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_ticket_titulo->Wrap( -1 );
+	bSizer30->Add( m_ticket_titulo, 0, wxALL, 5 );
 
 
 	bSizer30->Add( 0, 0, 1, wxEXPAND, 5 );
@@ -845,7 +801,6 @@ VentanaTickets::VentanaTickets( wxWindow* parent, wxWindowID id, const wxString&
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	m_cargar_todos_tickets->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaTickets::ClickBotonBuscarTodosTickets ), NULL, this );
 	m_cajaticket_buscar->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( VentanaTickets::EnterBuscar ), NULL, this );
 	m_ticket_buscar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaTickets::OnClickBuscarTicket ), NULL, this );
 	m_p_aceptar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaTickets::ClickAceptarAdmProducto ), NULL, this );
@@ -855,7 +810,6 @@ VentanaTickets::VentanaTickets( wxWindow* parent, wxWindowID id, const wxString&
 VentanaTickets::~VentanaTickets()
 {
 	// Disconnect Events
-	m_cargar_todos_tickets->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaTickets::ClickBotonBuscarTodosTickets ), NULL, this );
 	m_cajaticket_buscar->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( VentanaTickets::EnterBuscar ), NULL, this );
 	m_ticket_buscar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaTickets::OnClickBuscarTicket ), NULL, this );
 	m_p_aceptar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaTickets::ClickAceptarAdmProducto ), NULL, this );

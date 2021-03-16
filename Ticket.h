@@ -27,7 +27,7 @@ public:
 	std::string ticket_VerId() const;
 	std::string ticket_VerDNI() const;
 	std::string ticket_VerCodigoProd() const;
-	int ticket_VerCantidadItems() const;
+	int ticket_VerCantidadItems() const; ///Retorna la cantidad de productos comprados
 	float ticket_VerPrecio() const;
 	float ticket_VerTotal() const;
 	

@@ -9,7 +9,6 @@ private:
 	Financiero *m_financiero;
 	int QueProducto; ///almacena el índice del cliente
 protected:
-	void OnClickButtonNuevaMarca( wxCommandEvent& event )  override;
 	void OnClickButtonAceptarA( wxCommandEvent& event )  override;
 	void OnClickButtonCancelarB( wxCommandEvent& event )  override;
 	

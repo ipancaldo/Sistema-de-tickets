@@ -35,10 +35,6 @@ HijaEditarP::HijaEditarP(wxWindow *parent, Financiero *financiero, int cual) ///
 	verificadorCodigoInicial = p.prod_VerCodigo();
 }
 
-void HijaEditarP::OnClickButtonNuevaMarca( wxCommandEvent& event )  {
-	///HAY QUE DESHABILITAR
-}
-
 void HijaEditarP::OnClickButtonAceptarA( wxCommandEvent& event )  {
 	// Creamos un producto para ver si los datos son correctos
 	//(no por referencia para no guardar en este paso)

@@ -15,7 +15,6 @@
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/choice.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
@@ -26,7 +25,6 @@
 #include <wx/grid.h>
 #include <wx/frame.h>
 #include <wx/dialog.h>
-#include <wx/bmpcbox.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -39,38 +37,33 @@ class BasePrincipal : public wxFrame
 	private:
 
 	protected:
-		wxStaticText* m_staticText2;
-		wxChoice* m_clientes;
+		wxStaticText* m_staticText27;
 		wxStaticText* DiaHoy;
-		wxButton* m_iniciardia;
 		wxButton* m_button3;
+		wxButton* m_button4;
+		wxButton* m_button27;
 		wxStaticText* m_staticText3;
 		wxTextCtrl* m_codigoProducto;
 		wxStaticText* m_staticText6;
 		wxSpinCtrl* m_cantidadProducto;
 		wxButton* m_agregarProducto;
-		wxButton* m_button4;
 		wxStaticText* m_staticText4;
 		wxStaticText* numeroTicket;
-		wxButton* m_button27;
-		wxGrid* m_grilla;
 		wxButton* eliminar_producto;
+		wxGrid* m_grilla;
 		wxStaticText* m_staticText5;
 		wxStaticText* precioTotal;
-		wxButton* m_cerrardia;
 		wxButton* m_cancelar;
 		wxButton* m_guardar;
 		wxButton* m_imprimir;
 
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnCambiarTamanioPrinc( wxSizeEvent& event ) { event.Skip(); }
-		virtual void clickBotonIniciarDia( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickBotonAdministrarCliente( wxCommandEvent& event ) { event.Skip(); }
-		virtual void agregarProductoGrilla( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickBotonAdministrarProducto( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickBotonHistorialTickets( wxCommandEvent& event ) { event.Skip(); }
+		virtual void agregarProductoGrilla( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickEliminarProducto( wxCommandEvent& event ) { event.Skip(); }
-		virtual void clickBotonCerrarDia( wxCommandEvent& event ) { event.Skip(); }
 		virtual void Salir( wxCommandEvent& event ) { event.Skip(); }
 		virtual void Guardar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ImprimirTicket( wxCommandEvent& event ) { event.Skip(); }
@@ -172,7 +165,6 @@ class VentanaAdministrarProductos : public wxDialog
 		wxButton* m_p_agregar;
 		wxButton* m_p_editar;
 		wxButton* m_p_eliminar;
-		wxButton* m_p_cargar;
 		wxStaticText* m_staticText18;
 		wxTextCtrl* m_prod_buscar;
 		wxButton* m_p_buscar;
@@ -184,7 +176,6 @@ class VentanaAdministrarProductos : public wxDialog
 		virtual void ClickBotonAgregarProducto( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickBotonEditarProducto( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickBotonEliminarProducto( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnClickCargarProductos( wxCommandEvent& event ) { event.Skip(); }
 		virtual void EnterBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickBuscarProd( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDobleClickGProducto( wxGridEvent& event ) { event.Skip(); }
@@ -213,21 +204,16 @@ class VentanaAgrEditProductos : public wxDialog
 		wxTextCtrl* m_p_codigo;
 		wxStaticText* m_staticText37;
 		wxTextCtrl* m_p_marca;
-		wxBitmapComboBox* m_p_buscarMarcaLista;
-		wxButton* m_p_nuevaMarca;
 		wxStaticText* m_staticText38;
 		wxTextCtrl* m_p_producto;
 		wxStaticText* m_staticText40;
 		wxTextCtrl* m_p_precio;
-		wxStaticText* m_staticText42;
-		wxTextCtrl* m_p_stock;
 		wxStaticText* m_staticText43;
 		wxTextCtrl* m_p_descripcion;
 		wxButton* m_p_aceptarA;
 		wxButton* m_p_cancelarB;
 
 		// Virtual event handlers, overide them in your derived class
-		virtual void OnClickButtonNuevaMarca( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickButtonAceptarA( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickButtonCancelarB( wxCommandEvent& event ) { event.Skip(); }
 
@@ -248,7 +234,6 @@ class VentanaTickets : public wxDialog
 
 	protected:
 		wxStaticText* m_ticket_titulo;
-		wxButton* m_cargar_todos_tickets;
 		wxStaticText* m_staticText18;
 		wxTextCtrl* m_cajaticket_buscar;
 		wxButton* m_ticket_buscar;
@@ -257,7 +242,6 @@ class VentanaTickets : public wxDialog
 		wxButton* m_p_cancelar;
 
 		// Virtual event handlers, overide them in your derived class
-		virtual void ClickBotonBuscarTodosTickets( wxCommandEvent& event ) { event.Skip(); }
 		virtual void EnterBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickBuscarTicket( wxCommandEvent& event ) { event.Skip(); }
 		virtual void ClickAceptarAdmProducto( wxCommandEvent& event ) { event.Skip(); }

@@ -529,7 +529,6 @@ void Financiero::ImprimirTicket(std::string codigo){
 			aux.items = m_tickets[i].ticket_VerCantidadItems();
 			aux.total = m_tickets[i].ticket_VerTotal();
 			
-			
 			///Lo mismo para el producto comprado
 			productos_comprados.push_back(aux);
 		}

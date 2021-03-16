@@ -73,27 +73,12 @@ void HijaAdmProductos::ClickBotonEliminarProducto( wxCommandEvent& event )  {
 	/// Mensaje de alerta, en caso de aceptar, se guardan los cambios (eliminar)
 	int x = wxMessageBox("Esta seguro de eliminar?","Advertencia", wxYES_NO|wxICON_QUESTION);
 	
-	
-	/// Esto es para deshabilitar
-//	if(x==wxYES){
-//		///Creamos un producto por referencia para seleccionarlo y luego deshabilitarlo
-//		Producto &p = m_financiero->SeleccionarProducto(f);
-//		
-//		m_financiero->SeleccionarProducto(m_financiero->BuscarCodProd(p.prod_VerCodigo())).DeshabilitarProducto();
-//		m_financiero->GuardarProductos();
-//		RefrescarGrilla();
-//	}	
-	
 	if(x==wxYES){
 		///Creamos un producto por referencia para seleccionarlo y luego deshabilitarlo
 		m_financiero->EliminarProducto(f);
 		m_financiero->GuardarProductos();
 		RefrescarGrilla();
 	}	
-}
-
-void HijaAdmProductos::OnClickCargarProductos( wxCommandEvent& event )  {
-	event.Skip();
 }
 
 void HijaAdmProductos::EnterBuscar( wxCommandEvent& event )  {
@@ -161,7 +146,7 @@ void HijaAdmProductos::ClickCancelarAdmProducto( wxCommandEvent& event )  {
 	EndModal(0);
 }
 
-//HijaAdmProductos::~HijaAdmProductos() {
-//	
-//}
+HijaAdmProductos::~HijaAdmProductos() {
+	
+}
 

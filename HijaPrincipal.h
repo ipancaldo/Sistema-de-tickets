@@ -12,8 +12,6 @@ protected:
 	void Guardar( wxCommandEvent& event )  override; ///Guardamos todos los tickets en la DB
 	void ClickBotonHistorialTickets( wxCommandEvent& event )  override;
 	void agregarProductoGrilla( wxCommandEvent& event )  override;
-	void clickBotonIniciarDia( wxCommandEvent& event )  override;
-	void clickBotonCerrarDia( wxCommandEvent& event )  override;
 	void OnCambiarTamanioPrinc( wxSizeEvent& event )  override;
 	void Salir( wxCommandEvent& event )  override; ///Debería preguntar si queremos salir
 	void ClickBotonAdministrarCliente( wxCommandEvent& event)  override;
@@ -30,6 +28,7 @@ protected:
 	
 public:
 	HijaPrincipal(Financiero *financiero);
+	~HijaPrincipal();
 };
 
 #endif
