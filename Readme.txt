@@ -1,2 +1,1 @@
-Para ejecutar, debemos entrar a debug.w32 e iniciar ${FILENAME}.exe
-
+To run the program, you need to run the file 'Sistema de tickets.exe' in the debug.w32 folder.
