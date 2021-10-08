@@ -1,0 +1,8 @@
+Ticket número: 
+Datos del comprador:
+Nombre y apellido:  
+DNI: 
+Local: 
+************************
+   Producto                   Cantidad          Precio
+Total: $0
