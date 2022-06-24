@@ -2,7 +2,7 @@
 To run this program, you need to execute the file 'Sistema de tickets.exe' in the debug.w32 folder.
 
 
-This was my first big program made 100% by myself.
+This was my first big app made 100% by myself.
 
 It is a CRUD application about selling products in which you can use your code bar scanner to scan the product. 
 As a CRUD, you can create, read, update and delete them.
